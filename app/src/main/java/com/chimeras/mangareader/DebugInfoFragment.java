@@ -19,7 +19,7 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class DebugInfoFragment extends Fragment {
-    private static final String ARG_DEBUG_TEXT = "debug_text";
+    static final String ARG_DEBUG_TEXT = "debug_text";
 
     private String debug_text;
 

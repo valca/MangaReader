@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
@@ -13,10 +13,4 @@
     tools:context="com.chimeras.mangareader.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_shoting_and_archery_sport"
-        android:id="@+id/reader_view"
-        android:scaleType="fitCenter" />
-</RelativeLayout>
+</FrameLayout>

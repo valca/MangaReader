@@ -1,5 +1,6 @@
 package com.chimeras.mangareader;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -72,8 +74,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_list) {
-            // Handle the camera action
+
+            AsyncTask task = new LoadAndParseUrl();
+
+            task.execute(this,"http://m.mangahere.com");
         } else if (id == R.id.nav_fav) {
+
+            ReaderFragment frag = new ReaderFragment();
+            Bundle args = new Bundle();
+            args.putString(ReaderFragment.ARG_PARAM1, "p1");
+            args.putString(ReaderFragment.ARG_PARAM2, "p2");
+            frag.setArguments(args);
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, frag);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         } else if (id == R.id.nav_settings) {
 
@@ -82,5 +98,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void displayDebugText(String text) {
+        DebugInfoFragment frag = new DebugInfoFragment();
+        Bundle args = new Bundle();
+        args.putString(DebugInfoFragment.ARG_DEBUG_TEXT, text);
+        frag.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, frag);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
